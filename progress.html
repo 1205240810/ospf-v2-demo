@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OSPF 数字孪生实验平台 - 进度说明</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eef2f6;
+        --surface: #ffffff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #dbe3ee;
+        --accent: #2563eb;
+        --success: #166534;
+        --warning: #92400e;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      }
+      main {
+        max-width: 1040px;
+        margin: 0 auto;
+        padding: 44px 20px 56px;
+      }
+      .hero,
+      section {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+      }
+      .hero { padding: 28px; }
+      h1 {
+        margin: 0 0 10px;
+        font-size: 30px;
+        line-height: 1.2;
+      }
+      p {
+        color: var(--muted);
+        line-height: 1.75;
+      }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 22px;
+      }
+      a {
+        color: var(--accent);
+        font-weight: 700;
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 40px;
+        padding: 0 14px;
+        border-radius: 8px;
+        background: var(--accent);
+        color: white;
+        text-decoration: none;
+      }
+      .button.secondary {
+        background: #e2e8f0;
+        color: var(--text);
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px;
+        margin-top: 18px;
+      }
+      section { padding: 20px; }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 19px;
+      }
+      ul {
+        margin: 0;
+        padding-left: 19px;
+        color: #334155;
+        line-height: 1.7;
+      }
+      li + li { margin-top: 7px; }
+      .tag {
+        display: inline-flex;
+        margin-bottom: 12px;
+        padding: 5px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #f8fafc;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 800;
+      }
+      .ok { color: var(--success); }
+      .warn { color: var(--warning); }
+      footer {
+        margin-top: 18px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="hero">
+        <span class="tag">公开演示版</span>
+        <h1>OSPF 混合仿真数字孪生实验平台</h1>
+        <p>
+          当前页面用于对外展示界面、项目边界和阶段进度。GitHub Pages 是静态展示环境，
+          控制台按钮使用浏览器本地模拟数据，不连接现场的 FastAPI、host-agent、OVS、Docker 或 QEMU。
+          真实实验仍在远端 Linux 主机上运行。
+        </p>
+        <div class="actions">
+          <a class="button" href="./">打开可交互控制台</a>
+          <a class="button secondary" href="https://github.com/1205240810/ospf-v2-demo">查看 Demo 仓库</a>
+        </div>
+      </div>
+
+      <div class="grid">
+        <section>
+          <h2>当前已完成</h2>
+          <ul>
+            <li><strong class="ok">前端控制台：</strong>拓扑编辑、运行验收、平台/RF 信息管理、状态提示和预检交互。</li>
+            <li><strong class="ok">演示模式：</strong>保存、规划、应用、下发、Ping、导出 YAML 均可在 Pages 上本地模拟。</li>
+            <li><strong class="ok">后端控制器：</strong>FastAPI API、实验快照、自动 IP/OSPF 规划、YAML 导入导出。</li>
+            <li><strong class="ok">host-agent：</strong>在宿主机侧执行 OVS、Docker、QEMU、tap/veth 和清理流程。</li>
+            <li><strong class="ok">x86 验证：</strong>Docker FRR/PC 与 QEMU NE40/H3C/Cirros 混合拓扑已完成基础连通性验证。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>当前边界</h2>
+          <ul>
+            <li>Pages 展示版不会真正操作远端实验环境。</li>
+            <li>CLOUD/物理网卡接入需要现场独立网口和安全白名单，不能误接管理出口网卡。</li>
+            <li>平台/RF 数据当前用于管理、校验、展示和导出，暂不影响 OVS 链路或 Ping。</li>
+            <li>QEMU qcow2 设备主要面向 x86/KVM，不能直接作为 ARM 通用能力承诺。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>下一步重点</h2>
+          <ul>
+            <li>补齐 ARM Docker-only profile 的真实主机验证。</li>
+            <li>整理现场部署脚本、离线依赖包和迁移检查清单。</li>
+            <li>完善 CLOUD 物理网卡接入的 UI 配置、风险提示和验收步骤。</li>
+            <li>继续沉淀故障排查文档，降低无 AI 环境下的现场部署难度。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>ARM 主机采购/测试需求</h2>
+          <ul>
+            <li><strong class="warn">必要性：</strong>目前 ARM 兼容性还停留在设计和 Docker-only 预期，缺少真实 ARM Linux 主机验收。</li>
+            <li><strong class="warn">用途：</strong>验证 Docker、OVS、host-agent、FRR/PC 容器、部署脚本和常见国产 Linux 环境适配。</li>
+            <li><strong>建议配置：</strong>ARM64，4 核以上，16GB 内存起步，128GB SSD 起步，Linux 可装 Docker 与 OVS。</li>
+            <li><strong>网口建议：</strong>至少 1 个管理网口；如果要测试 CLOUD/物理接入，最好有第 2 个独立网口。</li>
+          </ul>
+        </section>
+      </div>
+
+      <footer>
+        展示版本：GitHub Pages 静态可交互 Demo。真实部署版本：controller Docker + host-agent + 宿主机 OVS/Docker/QEMU。
+      </footer>
+    </main>
+  </body>
+</html>
